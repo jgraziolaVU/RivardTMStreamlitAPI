@@ -696,10 +696,10 @@ def extract_text_from_file(file):
         return ""
 
 def claude_parse_syllabus(syllabus_text: str, client: anthropic.Anthropic) -> Tuple[List[Dict], List[Dict]]:
-    """Use Claude to intelligently parse any syllabus format"""
+    """Use Claude 4 Sonnet to intelligently parse any syllabus format"""
     
     prompt = f"""
-    You are an expert academic assistant that can parse any syllabus format. Please analyze the following syllabus text and extract:
+    You are an expert academic assistant powered by Claude 4 Sonnet. Please analyze the following syllabus text and extract:
 
     1. COURSES: All courses mentioned (course codes, names, credits, etc.)
     2. DEADLINES: All assignments, exams, quizzes, projects, and their due dates
@@ -771,11 +771,25 @@ def claude_parse_syllabus(syllabus_text: str, client: anthropic.Anthropic) -> Tu
         
         return courses, deadlines
         
+    except anthropic.AuthenticationError:
+        st.error("❌ Authentication failed. Please check your API key.")
+        return [], []
+    except anthropic.PermissionDeniedError:
+        st.error("❌ Permission denied. Your API key may not have access to Claude 4 Sonnet.")
+        return [], []
+    except anthropic.NotFoundError:
+        st.error("❌ Claude 4 Sonnet model not found. Please check your API access.")
+        return [], []
+    except anthropic.RateLimitError:
+        st.error("❌ Rate limit exceeded. Please try again in a moment.")
+        return [], []
     except json.JSONDecodeError as e:
-        st.error(f"Error parsing Claude's response: {str(e)}")
+        st.error(f"❌ Error parsing AI response: {str(e)}")
+        st.info("💡 The AI response wasn't in the expected format. Please try again.")
         return [], []
     except Exception as e:
-        st.error(f"Error with Claude API: {str(e)}")
+        st.error(f"❌ Error with Claude 4 API: {str(e)}")
+        st.info("💡 Please check your connection and try again.")
         return [], []
 
 def generate_instant_schedule(courses: List[Dict], deadlines: List[Dict], preferences: Dict) -> Dict:
