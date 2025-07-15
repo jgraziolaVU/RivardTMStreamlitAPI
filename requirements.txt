@@ -19,44 +19,8 @@ reportlab>=4.0.4
 # Anthropic Claude API
 anthropic>=0.25.0
 
-# JSON handling (built-in, but ensuring compatibility)
-# json - built-in module
-
-# UUID generation (built-in)
-# uuid - built-in module
-
-# Regular expressions (built-in)
-# re - built-in module
-
-# Random number generation (built-in)
-# random - built-in module
-
-# URL parsing (built-in)
-# urllib.parse - built-in module
-
-# Collections (built-in)
-# collections - built-in module
-
-# Base64 encoding (built-in)
-# base64 - built-in module
-
-# I/O operations (built-in)
-# io - built-in module
-
-# Typing hints (built-in in Python 3.5+)
-# typing - built-in module
-
-# Optional: For enhanced error handling and logging
+# HTTP requests (used by anthropic)
 requests>=2.31.0
-
-# Optional: For better date parsing if needed
-dateparser>=1.1.8
-
-# Optional: For enhanced PDF text extraction
-pdfplumber>=0.9.0
-
-# Optional: For better Word document handling
-python-docx2txt>=0.8
 
 # Note: The following are built-in Python modules and don't need to be installed:
 # - datetime
