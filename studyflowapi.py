@@ -663,9 +663,9 @@ def validate_api_key(api_key: str) -> bool:
     
     try:
         client = anthropic.Anthropic(api_key=api_key)
-        # Test the API key with a simple request
+        # Test the API key with a simple request using Claude 4 Sonnet
         response = client.messages.create(
-            model="claude-3-sonnet-20240229",
+            model="claude-sonnet-4-20250514",
             max_tokens=10,
             messages=[{"role": "user", "content": "Hello"}]
         )
@@ -747,7 +747,7 @@ def claude_parse_syllabus(syllabus_text: str, client: anthropic.Anthropic) -> Tu
     
     try:
         response = client.messages.create(
-            model="claude-3-sonnet-20240229",
+            model="claude-sonnet-4-20250514",
             max_tokens=4000,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -1289,7 +1289,7 @@ def main():
     <div class="main-container">
         <div class="hero-section">
             <div class="hero-title">⚡ StudyFlow AI</div>
-            <div class="hero-subtitle">Your AI-powered study scheduler that reads ANY syllabus format</div>
+            <div class="hero-subtitle">Powered by Claude 4 - Reads ANY syllabus format with advanced AI</div>
         </div>
     """, unsafe_allow_html=True)
     
@@ -1309,12 +1309,12 @@ def show_api_key_step():
     <div class="main-container">
         <div class="hero-section">
             <div class="hero-title">⚡ StudyFlow AI</div>
-            <div class="hero-subtitle">Your AI-powered study scheduler that reads ANY syllabus format</div>
+            <div class="hero-subtitle">Powered by Claude 4 - Reads ANY syllabus format with advanced AI</div>
         </div>
         
         <div class="api-key-section">
             <h3>🔑 Enter Your Anthropic API Key</h3>
-            <p>StudyFlow AI uses Claude to intelligently parse your syllabus and create personalized schedules. You'll need an API key to get started.</p>
+            <p>StudyFlow AI uses Claude 4 Sonnet to intelligently parse your syllabus and create personalized schedules. You'll need an API key to get started.</p>
             <p><strong>Don't have an API key?</strong> <a href="https://console.anthropic.com/" target="_blank">Get one here</a> (free tier available!)</p>
         </div>
     </div>
@@ -1345,19 +1345,20 @@ def show_api_key_step():
     # Information section
     st.markdown("""
     <div class="setup-card">
-        <h3>🤖 Why StudyFlow AI is Different</h3>
-        <p><strong>Universal Syllabus Reading:</strong> Unlike other apps that require manual entry, StudyFlow AI can read and understand ANY syllabus format - from traditional PDFs to modern Canvas exports.</p>
-        <p><strong>Intelligent Parsing:</strong> Claude AI automatically detects courses, deadlines, exam dates, and priorities without any manual tagging.</p>
-        <p><strong>Smart Scheduling:</strong> Creates realistic study schedules that account for your actual college life - including procrastination buffers and social time.</p>
+        <h3>🤖 Why StudyFlow AI with Claude 4 is Revolutionary</h3>
+        <p><strong>Next-Gen Syllabus Reading:</strong> Claude 4 Sonnet provides unprecedented accuracy in understanding ANY syllabus format - from traditional PDFs to complex Canvas exports.</p>
+        <p><strong>Advanced Intelligence:</strong> Superior reasoning capabilities mean better deadline detection, smarter prioritization, and more accurate course analysis.</p>
+        <p><strong>Enhanced Tool Use:</strong> Claude 4's improved tool use accuracy ensures reliable document processing and schedule generation.</p>
         <p><strong>Privacy First:</strong> Your API key and documents are processed securely. We don't store your personal information.</p>
     </div>
     
     <div class="setup-card">
-        <h3>💰 API Costs</h3>
-        <p>StudyFlow AI uses Claude Sonnet, which costs approximately $0.01-0.05 per syllabus processing. Most students spend less than $1/month for full semester planning.</p>
+        <h3>💰 Claude 4 Pricing</h3>
+        <p>StudyFlow AI uses Claude 4 Sonnet, which costs approximately $0.02-0.08 per syllabus processing. Most students spend less than $2/month for full semester planning.</p>
         <p>✅ Free tier available for new Anthropic accounts<br>
         ✅ Pay-as-you-go pricing<br>
-        ✅ No subscription required</p>
+        ✅ No subscription required<br>
+        ✅ Advanced AI capabilities worth the upgrade</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1772,7 +1773,7 @@ def show_schedule_step():
                 'schedule': st.session_state.final_schedule,
                 'generated_date': datetime.now().isoformat(),
                 'ai_powered': True,
-                'claude_version': 'claude-3-sonnet-20240229'
+                'claude_version': 'claude-sonnet-4-20250514'
             }
             
             st.download_button(
